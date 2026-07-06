@@ -819,6 +819,10 @@ body.mobile-device #tech .section-video {
     background-color: #030712; 
 }
 
+body.mobile-device #projects .section-video {
+    object-position: 75% center; /* Focuses on the right side of the video where the character is */
+}
+
 /* Typing Animation */
 .typing-container {
     font-family: 'Inter', sans-serif;
