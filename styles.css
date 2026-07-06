@@ -814,13 +814,15 @@ body.mobile-device .tech-badge {
 
 body.mobile-device #tech .section-video {
     object-fit: contain;
-    transform: scale(2);
-    transform-origin: center center;
+    object-position: center center;
     background-color: #030712; 
+    transform: none;
 }
 
 body.mobile-device #projects .section-video {
-    object-position: 75% center; /* Focuses on the right side of the video where the character is */
+    object-fit: cover;
+    object-position: 25% center; /* Shift focus to the left side where the Samurai likely is */
+    transform: none;
 }
 
 /* Typing Animation */
