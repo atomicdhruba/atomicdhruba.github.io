@@ -813,7 +813,7 @@ body.mobile-device .tech-badge {
 }
 
 body.mobile-device #tech .section-video {
-    object-fit: contain;
+    object-fit: cover;
     object-position: center center;
     background-color: #030712; 
     transform: none;
