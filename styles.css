@@ -814,7 +814,7 @@ body.mobile-device .tech-badge {
 
 body.mobile-device #tech .section-video {
     object-fit: contain;
-    transform: scale(10);
+    transform: scale(2);
     transform-origin: center center;
     background-color: #030712; 
 }
