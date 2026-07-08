@@ -13,6 +13,10 @@
     --gradient-primary: linear-gradient(135deg, var(--accent-purple), var(--accent-teal));
 }
 
+html {
+    font-size: 75%; /* Scales the entire UI down to 12px base, making it look zoomed out */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -736,6 +740,9 @@ h1, h2, h3, h4, .nav-logo {
 
 /* Responsive */
 @media (max-width: 900px) {
+    html {
+        font-size: 100%; /* Reset to default so mobile doesn't get unreadably tiny */
+    }
     .nav-left {
         gap: 1.5rem;
     }
