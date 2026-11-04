@@ -1,0 +1,6 @@
+# robots.txt for https://atomicdhruba.github.io/
+User-agent: *
+Allow: /
+
+# Sitemap Index
+Sitemap: https://atomicdhruba.github.io/sitemap.xml

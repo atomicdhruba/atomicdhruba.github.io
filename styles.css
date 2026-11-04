@@ -510,8 +510,6 @@ h1, h2, h3, h4, .nav-logo {
     }
 }
 
-}
-
 /* Glass Styled Tech Cards */
 .glass-card {
     background: rgba(6, 15, 25, 0.2);
@@ -751,13 +749,51 @@ h1, h2, h3, h4, .nav-logo {
     }
     .hero {
         padding-left: 2rem;
+        padding-right: 2rem;
         padding-bottom: 15%;
     }
     .gaming-headline {
-        font-size: 4.5rem;
+        font-size: clamp(3rem, 10vw, 4.5rem);
     }
     .about-grid {
         grid-template-columns: 1fr;
+        width: 100%;
+        margin: 3rem auto 0 auto;
+    }
+    .about-grid .cyber-card {
+        padding: 2.5rem;
+    }
+    .tech-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    .tech-column {
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: 100%;
+    }
+    .cyber-section {
+        padding: 6rem 0;
+    }
+    .glass-card {
+        padding: 2.5rem;
+    }
+    .project-card {
+        max-width: 100%;
+        margin: 0 0 2.5rem 0;
+        padding: 2.5rem;
+    }
+    #tech .section-video {
+        object-fit: cover;
+        object-position: center center;
+        background-color: #030712; 
+        transform: none;
+    }
+    #projects .section-video {
+        object-fit: cover;
+        object-position: 25% center;
+        transform: none;
     }
     .hero-actions {
         flex-direction: column;
