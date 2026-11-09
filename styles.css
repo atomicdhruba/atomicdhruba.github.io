@@ -38,6 +38,10 @@ h1, h2, h3, h4, .nav-logo {
 }
 
 /* Utilities */
+section[id] {
+    scroll-margin-top: 80px;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -80,6 +84,16 @@ h1, h2, h3, h4, .nav-logo {
     padding: 1.5rem 3rem;
     z-index: 100;
     background: linear-gradient(to bottom, rgba(13, 17, 23, 0.9), transparent);
+    transition: background 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: rgba(13, 17, 23, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.25);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    padding: 1rem 3rem;
 }
 
 .nav-left {
@@ -736,136 +750,296 @@ h1, h2, h3, h4, .nav-logo {
     transform: translateX(-50px);
 }
 
-/* Responsive */
+/* Responsive Design & Mobile Optimizations */
 @media (max-width: 900px) {
     html {
-        font-size: 100%; /* Reset to default so mobile doesn't get unreadably tiny */
+        font-size: 100%;
+    }
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Fixed Navbar on Mobile */
+    .navbar {
+        padding: 0.75rem 1.25rem;
+        background: rgba(13, 17, 23, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(124, 58, 237, 0.2);
     }
     .nav-left {
-        gap: 1.5rem;
+        gap: 1rem;
+    }
+    .nav-logo {
+        font-size: 1.15rem;
+        letter-spacing: 0.5px;
+    }
+    .nav-logo-sub {
+        font-size: 1.15rem;
     }
     .nav-links {
-        display: none; 
+        display: none;
     }
+    .top-btn {
+        padding: 0.45rem 0.9rem;
+        font-size: 0.75rem !important;
+        letter-spacing: 0.5px;
+    }
+
+    /* Hero Section on Mobile */
     .hero {
-        padding-left: 2rem;
-        padding-right: 2rem;
-        padding-bottom: 15%;
+        min-height: 100svh;
+        height: auto;
+        padding: 6.5rem 1.25rem 2.8rem;
+        display: flex;
+        align-items: flex-end;
+    }
+    .hero-content {
+        max-width: 100%;
+    }
+    /* Centers and frames samurai character cleanly without cropping head or pushing off-screen */
+    .hero-video {
+        object-fit: cover;
+        object-position: 68% 18%;
+    }
+    .video-overlay {
+        background: linear-gradient(to top, rgba(13,17,23,0.98) 0%, rgba(13,17,23,0.68) 45%, rgba(13,17,23,0.18) 100%),
+                    linear-gradient(to right, rgba(13,17,23,0.85) 0%, rgba(13,17,23,0.15) 100%);
+    }
+    .accent-line-text {
+        font-size: 0.7rem;
+        margin-bottom: 0.75rem;
     }
     .gaming-headline {
-        font-size: clamp(3rem, 10vw, 4.5rem);
+        font-size: clamp(2.4rem, 8.8vw, 3.8rem);
+        line-height: 1.0;
+        margin-bottom: 1rem;
+        letter-spacing: -0.5px;
     }
-    .about-grid {
-        grid-template-columns: 1fr;
-        width: 100%;
-        margin: 3rem auto 0 auto;
+    .typing-container {
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+        min-height: 1.4rem;
     }
-    .about-grid .cyber-card {
-        padding: 2.5rem;
-    }
-    .tech-layout {
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-    }
-    .tech-column {
-        flex: 1 1 auto;
-        width: 100%;
+    .hero-desc {
+        font-size: 0.92rem;
+        line-height: 1.65;
+        margin-bottom: 1.75rem;
         max-width: 100%;
-    }
-    .cyber-section {
-        padding: 6rem 0;
-    }
-    .glass-card {
-        padding: 2.5rem;
-    }
-    .project-card {
-        max-width: 100%;
-        margin: 0 0 2.5rem 0;
-        padding: 2.5rem;
-    }
-    #tech .section-video {
-        object-fit: cover;
-        object-position: center center;
-        background-color: #030712; 
-        transform: none;
-    }
-    #projects .section-video {
-        object-fit: cover;
-        object-position: 25% center;
-        transform: none;
     }
     .hero-actions {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        align-items: center;
+    }
+    .btn {
+        padding: 0.7rem 1.4rem;
+        font-size: 0.82rem;
+    }
+    .text-btn {
+        font-size: 0.85rem;
+        gap: 0.75rem;
+    }
+    .circle-icon {
+        width: 36px;
+        height: 36px;
+    }
+    .mini-socials {
+        gap: 1.25rem;
+        padding-left: 0.25rem;
+    }
+    .mini-socials a {
+        font-size: 1.2rem;
     }
     .bottom-right-stats {
         display: none;
     }
+
+    /* Clean Section Heights & Spacing on Mobile */
+    .about-section {
+        padding: 3.5rem 0 3rem;
+        min-height: auto;
+    }
+    .cyber-section {
+        padding: 3.5rem 0 3rem;
+        min-height: auto;
+    }
+    .container {
+        padding: 0 1.25rem;
+    }
+    .cyber-title {
+        font-size: 2rem;
+        margin-bottom: 1.75rem;
+        letter-spacing: 0.5px;
+    }
+
+    /* Cinematic Banner Video for each section on Mobile (prevents 9x zoom) */
+    .section-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: clamp(440px, 58vh, 520px);
+        object-fit: cover;
+        opacity: 0.38;
+    }
+    #about .section-video {
+        object-position: 50% 22%;
+    }
+    #tech .section-video {
+        object-position: 50% 30%;
+    }
+    #projects .section-video {
+        object-position: 22% 25%;
+    }
+    .section-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: clamp(440px, 58vh, 520px);
+        background: linear-gradient(to bottom, rgba(6,9,14,0.2) 0%, rgba(6,9,14,0.72) 65%, var(--bg-darker) 100%);
+        z-index: -1;
+    }
+
+    /* Cards & Grids on Mobile */
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        width: 100%;
+        margin: 1.5rem auto 0 auto;
+    }
+    .about-grid .cyber-card,
+    body.mobile-device .about-grid .cyber-card,
+    .glass-card,
+    body.mobile-device .glass-card,
+    .project-card,
+    body.mobile-device .project-card {
+        padding: 1.6rem;
+        border-radius: 12px;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .about-grid pre,
+    body.mobile-device .about-grid .cyber-card pre {
+        font-size: 0.82rem;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+    .cyber-list li,
+    body.mobile-device .about-grid .cyber-card li {
+        font-size: 0.92rem;
+        line-height: 1.6;
+        margin-bottom: 1.1rem;
+        gap: 0.9rem;
+    }
+    .cyber-list i {
+        font-size: 1.05rem;
+    }
+    .about-watermark {
+        display: none;
+    }
+
+    /* Tech Stack Cards */
+    .tech-layout,
+    body.mobile-device .tech-layout {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .tech-column,
+    body.mobile-device .tech-column {
+        width: 100%;
+        flex: 1 1 auto;
+        gap: 1.5rem;
+    }
+    .glass-title,
+    body.mobile-device .glass-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1.25rem;
+        letter-spacing: 1.5px;
+    }
+    .badge-grid {
+        gap: 0.65rem;
+    }
+    .cyber-badge,
+    body.mobile-device .tech-badge {
+        font-size: 0.78rem;
+        padding: 0.45rem 0.85rem;
+        gap: 0.4rem;
+    }
+
+    /* Projects */
+    .project-card {
+        margin-bottom: 2rem;
+    }
+    .project-title {
+        font-size: 1.6rem;
+        gap: 0.75rem;
+        margin-bottom: 0.4rem;
+    }
+    .project-subtitle {
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
+        margin-bottom: 1.1rem;
+    }
+    .project-desc {
+        font-size: 0.92rem;
+        line-height: 1.65;
+        margin-bottom: 1.3rem;
+    }
+    .project-tags {
+        gap: 0.5rem;
+        margin-bottom: 1.75rem;
+    }
+    .project-tags span {
+        font-size: 0.82rem;
+    }
+
+    /* Footer */
+    .cyber-footer {
+        padding: 3.5rem 0 2.5rem;
+    }
+    .social-links-footer {
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    .social-btn {
+        font-size: 1.6rem;
+    }
+    .quote {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+        margin-bottom: 1.5rem;
+    }
+    .copyright {
+        font-size: 0.78rem;
+    }
 }
 
-body.mobile-device .about-grid {
-    grid-template-columns: 1fr;
-    width: 100%;
-    margin: 3rem auto 0 auto;
-}
-
-body.mobile-device .about-grid .cyber-card {
-    padding: 3.5rem;
-}
-
-body.mobile-device .about-grid .cyber-card code,
-body.mobile-device .about-grid .cyber-card pre,
-body.mobile-device .about-grid .cyber-card li {
-    font-size: 1.4rem;
-    line-height: 1.8;
-}
-
-body.mobile-device .about-grid .cyber-card h3,
-body.mobile-device .about-grid .cyber-card .list-title {
-    font-size: 2rem;
-}
-
-body.mobile-device .tech-layout {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-body.mobile-device .tech-column {
-    flex: 1 1 auto;
-    width: 100%;
-    max-width: 100%;
-}
-
-body.mobile-device .cyber-section {
-    padding: 6rem 0;
-}
-
-body.mobile-device .glass-card {
-    padding: 3.5rem;
-}
-
-body.mobile-device .glass-card h3 {
-    font-size: 2rem;
-}
-
-body.mobile-device .tech-badge {
-    font-size: 1.2rem;
-    padding: 0.8rem 1.5rem;
-}
-
-body.mobile-device #tech .section-video {
-    object-fit: cover;
-    object-position: center center;
-    background-color: #030712; 
-    transform: none;
-}
-
-body.mobile-device #projects .section-video {
-    object-fit: cover;
-    object-position: 25% center; /* Shift focus to the left side where the Samurai likely is */
-    transform: none;
+/* Extra small mobile adjustments */
+@media (max-width: 480px) {
+    .nav-logo {
+        font-size: 1.05rem;
+    }
+    .top-btn {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.7rem !important;
+    }
+    .gaming-headline {
+        font-size: clamp(2rem, 11vw, 2.7rem);
+    }
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .hero-actions .btn,
+    .hero-actions .text-btn {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 /* Typing Animation */

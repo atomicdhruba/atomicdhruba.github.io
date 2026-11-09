@@ -34,35 +34,53 @@ function erase() {
     }
 }
 
+// Scroll Reveal Interaction & Navbar State
 document.addEventListener("DOMContentLoaded", function() {
     if (textArray.length) setTimeout(type, newTextDelay + 250);
-});
 
-// Scroll Reveal Interaction
-function reveal() {
-    var reveals = document.querySelectorAll(".reveal");
-
-    for (var i = 0; i < reveals.length; i++) {
-        var windowHeight = window.innerHeight;
-        var elementTop = reveals[i].getBoundingClientRect().top;
-        var elementBottom = reveals[i].getBoundingClientRect().bottom;
-        var elementVisible = 50;
-
-        // Add active if it's within the viewport (with a small buffer)
-        // Remove active if it scrolls out of view (either top or bottom)
-        if (elementTop < windowHeight - elementVisible && elementBottom > elementVisible) {
-            reveals[i].classList.add("active");
+    // Navbar scroll effect
+    const navbar = document.querySelector(".navbar");
+    function handleNavScroll() {
+        if (!navbar) return;
+        if (window.scrollY > 30) {
+            navbar.classList.add("scrolled");
         } else {
-            reveals[i].classList.remove("active");
+            navbar.classList.remove("scrolled");
         }
     }
-}
+    window.addEventListener("scroll", handleNavScroll, { passive: true });
+    handleNavScroll();
 
-window.addEventListener("scroll", reveal);
-reveal(); // Trigger once on load
+    // Intersection Observer for smooth reveal without jarring flickers
+    const reveals = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
 
-// Mobile device detection to add a specific class to the body for targeting
-// only the mobile device without breaking the fixed 1200px viewport for the rest of the site.
+        reveals.forEach(el => observer.observe(el));
+    } else {
+        // Fallback for older browsers
+        function revealFallback() {
+            const windowHeight = window.innerHeight;
+            reveals.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 50) {
+                    el.classList.add("active");
+                }
+            });
+        }
+        window.addEventListener("scroll", revealFallback, { passive: true });
+        revealFallback();
+    }
+});
+
+// Mobile device detection
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     document.body.classList.add("mobile-device");
 }
