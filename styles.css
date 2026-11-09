@@ -752,44 +752,44 @@ section[id] {
 
 /* Desktop Sticky Cinematic Video Backgrounds (Prevents excessive vertical scaling & horizontal hero cropping) */
 @media (min-width: 901px) {
-    .about-section,
-    .tech-stack,
-    .projects {
+    body:not(.mobile-device) .about-section,
+    body:not(.mobile-device) .tech-stack,
+    body:not(.mobile-device) .projects {
         position: relative;
         overflow: clip;
         padding: 8rem 0;
     }
 
-    .about-section .section-video,
-    .tech-stack .section-video,
-    .projects .section-video {
+    body:not(.mobile-device) .about-section .section-video,
+    body:not(.mobile-device) .tech-stack .section-video,
+    body:not(.mobile-device) .projects .section-video {
         position: sticky;
         top: 0;
         left: 0;
         width: 100%;
         height: 100vh;
         object-fit: cover;
-        opacity: 0.4;
+        opacity: 0.45;
         margin-bottom: -100vh;
         pointer-events: none;
         z-index: 0;
     }
 
-    #about .section-video {
+    body:not(.mobile-device) #about .section-video {
         object-position: center 25%;
     }
-    #tech .section-video {
+    body:not(.mobile-device) #tech .section-video {
         object-position: center 30%;
     }
-    /* Pins the hero character on the left so his face, katana, and torso are NEVER pushed off-screen */
-    #projects .section-video {
+    /* Pins the samurai hero character cleanly on the left side next to project cards */
+    body:not(.mobile-device) #projects .section-video {
         object-position: left 20%;
         opacity: 0.5;
     }
 
-    .about-section .section-overlay,
-    .tech-stack .section-overlay,
-    .projects .section-overlay {
+    body:not(.mobile-device) .about-section .section-overlay,
+    body:not(.mobile-device) .tech-stack .section-overlay,
+    body:not(.mobile-device) .projects .section-overlay {
         position: sticky;
         top: 0;
         left: 0;
@@ -800,24 +800,24 @@ section[id] {
         z-index: 0;
     }
 
-    #about .section-overlay,
-    #tech .section-overlay {
+    body:not(.mobile-device) #about .section-overlay,
+    body:not(.mobile-device) #tech .section-overlay {
         background: radial-gradient(circle at center, rgba(6,15,25,0.2) 0%, rgba(6,9,14,0.7) 60%, var(--bg-darker) 100%);
     }
 
-    #projects .section-overlay {
-        background: linear-gradient(to right, rgba(13,17,23,0.15) 0%, rgba(13,17,23,0.6) 42%, rgba(13,17,23,0.96) 80%);
+    body:not(.mobile-device) #projects .section-overlay {
+        background: linear-gradient(to right, rgba(13,17,23,0.1) 0%, rgba(13,17,23,0.6) 42%, rgba(13,17,23,0.96) 80%);
     }
 
-    .about-section .container,
-    .tech-stack .container,
-    .projects .container {
+    body:not(.mobile-device) .about-section .container,
+    body:not(.mobile-device) .tech-stack .container,
+    body:not(.mobile-device) .projects .container {
         position: relative;
         z-index: 1;
     }
 }
 
-/* Responsive Design & Mobile Optimizations */
+/* Responsive Design & Mobile / Android WebView Optimizations */
 @media (max-width: 900px) {
     html {
         font-size: 100%;
@@ -857,39 +857,39 @@ section[id] {
     .hero {
         min-height: 100svh;
         height: auto;
-        padding: 6.5rem 1.25rem 2.8rem;
-        display: flex;
-        align-items: flex-end;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        padding-bottom: 12%;
     }
     .hero-content {
         max-width: 100%;
     }
-    /* Centers and frames samurai character cleanly without cropping head or pushing off-screen */
+    /* Restores samurai character to the right with unobstructed headline on left */
     .hero-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
-        object-position: 68% 18%;
+        object-position: top center;
     }
     .video-overlay {
-        background: linear-gradient(to top, rgba(13,17,23,0.98) 0%, rgba(13,17,23,0.68) 45%, rgba(13,17,23,0.18) 100%),
+        background: linear-gradient(to top, rgba(13,17,23,0.95) 0%, rgba(13,17,23,0.55) 50%, rgba(13,17,23,0.15) 100%),
                     linear-gradient(to right, rgba(13,17,23,0.85) 0%, rgba(13,17,23,0.15) 100%);
     }
     .accent-line-text {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         margin-bottom: 0.75rem;
     }
     .gaming-headline {
-        font-size: clamp(2.4rem, 8.8vw, 3.8rem);
-        line-height: 1.0;
+        font-size: clamp(2.6rem, 9.5vw, 4rem);
+        line-height: 1.05;
         margin-bottom: 1rem;
         letter-spacing: -0.5px;
     }
-    .typing-container {
-        font-size: 1rem;
-        margin-bottom: 1.2rem;
-        min-height: 1.4rem;
-    }
     .hero-desc {
-        font-size: 0.92rem;
+        font-size: 0.95rem;
         line-height: 1.65;
         margin-bottom: 1.75rem;
         max-width: 100%;
@@ -902,7 +902,7 @@ section[id] {
     }
     .btn {
         padding: 0.7rem 1.4rem;
-        font-size: 0.82rem;
+        font-size: 0.85rem;
     }
     .text-btn {
         font-size: 0.85rem;
@@ -923,51 +923,61 @@ section[id] {
         display: none;
     }
 
-    /* Clean Section Heights & Spacing on Mobile */
-    .about-section {
-        padding: 3.5rem 0 3rem;
+    /* Section Spacing & Full Continuous Ambient Video Backgrounds for Mobile / WebView */
+    .about-section,
+    .tech-stack,
+    .projects {
+        position: relative;
+        overflow: hidden;
         min-height: auto;
-    }
-    .cyber-section {
-        padding: 3.5rem 0 3rem;
-        min-height: auto;
+        padding: 5rem 0 4rem;
     }
     .container {
         padding: 0 1.25rem;
     }
     .cyber-title {
-        font-size: 2rem;
-        margin-bottom: 1.75rem;
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
         letter-spacing: 0.5px;
     }
 
-    /* Cinematic Banner Video for each section on Mobile (prevents 9x zoom) */
+    /* Full-bleed background videos spanning entire section height (prevents abrupt cutoff voids) */
     .section-video {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        height: clamp(440px, 58vh, 520px);
+        height: 100%;
+        min-height: 100%;
         object-fit: cover;
-        opacity: 0.38;
-    }
-    #about .section-video {
-        object-position: 50% 22%;
-    }
-    #tech .section-video {
-        object-position: 50% 30%;
-    }
-    #projects .section-video {
-        object-position: 22% 25%;
+        opacity: 0.35;
+        pointer-events: none;
+        z-index: 0;
+        transform: none;
     }
     .section-overlay {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        height: clamp(440px, 58vh, 520px);
-        background: linear-gradient(to bottom, rgba(6,9,14,0.2) 0%, rgba(6,9,14,0.72) 65%, var(--bg-darker) 100%);
-        z-index: -1;
+        height: 100%;
+        background: radial-gradient(circle at center, rgba(6,15,25,0.2) 0%, rgba(6,9,14,0.7) 60%, var(--bg-darker) 100%);
+        pointer-events: none;
+        z-index: 0;
+    }
+    #about .section-video {
+        object-position: center 25%;
+    }
+    #tech .section-video {
+        object-fit: cover;
+        object-position: center center;
+        background-color: #030712;
+        transform: none;
+    }
+    #projects .section-video {
+        object-fit: cover;
+        object-position: 25% center;
+        transform: none;
     }
 
     /* Cards & Grids on Mobile */
@@ -978,27 +988,22 @@ section[id] {
         margin: 1.5rem auto 0 auto;
     }
     .about-grid .cyber-card,
-    body.mobile-device .about-grid .cyber-card,
     .glass-card,
-    body.mobile-device .glass-card,
-    .project-card,
-    body.mobile-device .project-card {
-        padding: 1.6rem;
+    .project-card {
+        padding: 2rem;
         border-radius: 12px;
         max-width: 100%;
         margin-left: 0;
         margin-right: 0;
     }
-    .about-grid pre,
-    body.mobile-device .about-grid .cyber-card pre {
-        font-size: 0.82rem;
+    .about-grid pre {
+        font-size: 0.85rem;
         line-height: 1.6;
         white-space: pre-wrap;
         word-break: break-word;
     }
-    .cyber-list li,
-    body.mobile-device .about-grid .cyber-card li {
-        font-size: 0.92rem;
+    .cyber-list li {
+        font-size: 0.95rem;
         line-height: 1.6;
         margin-bottom: 1.1rem;
         gap: 0.9rem;
@@ -1011,30 +1016,26 @@ section[id] {
     }
 
     /* Tech Stack Cards */
-    .tech-layout,
-    body.mobile-device .tech-layout {
+    .tech-layout {
         flex-direction: column;
         gap: 1.5rem;
     }
-    .tech-column,
-    body.mobile-device .tech-column {
+    .tech-column {
         width: 100%;
         flex: 1 1 auto;
         gap: 1.5rem;
     }
-    .glass-title,
-    body.mobile-device .glass-card h3 {
-        font-size: 1.2rem;
+    .glass-title {
+        font-size: 1.3rem;
         margin-bottom: 1.25rem;
         letter-spacing: 1.5px;
     }
     .badge-grid {
         gap: 0.65rem;
     }
-    .cyber-badge,
-    body.mobile-device .tech-badge {
-        font-size: 0.78rem;
-        padding: 0.45rem 0.85rem;
+    .cyber-badge {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.9rem;
         gap: 0.4rem;
     }
 
@@ -1084,6 +1085,71 @@ section[id] {
     .copyright {
         font-size: 0.78rem;
     }
+}
+
+/* Original Android WebView / Mobile Device Rules (preserves original Android WebView experience) */
+body.mobile-device .about-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+    margin: 3rem auto 0 auto;
+}
+
+body.mobile-device .about-grid .cyber-card {
+    padding: 2.5rem;
+}
+
+body.mobile-device .about-grid .cyber-card code,
+body.mobile-device .about-grid .cyber-card pre,
+body.mobile-device .about-grid .cyber-card li {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+body.mobile-device .about-grid .cyber-card h3,
+body.mobile-device .about-grid .cyber-card .list-title {
+    font-size: 1.6rem;
+}
+
+body.mobile-device .tech-layout {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+body.mobile-device .tech-column {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
+}
+
+body.mobile-device .cyber-section {
+    padding: 5rem 0;
+}
+
+body.mobile-device .glass-card {
+    padding: 2.5rem;
+}
+
+body.mobile-device .glass-card h3 {
+    font-size: 1.6rem;
+}
+
+body.mobile-device .tech-badge {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+}
+
+body.mobile-device #tech .section-video {
+    object-fit: cover !important;
+    object-position: center center !important;
+    background-color: #030712; 
+    transform: none !important;
+}
+
+body.mobile-device #projects .section-video {
+    object-fit: cover !important;
+    object-position: 25% center !important;
+    transform: none !important;
 }
 
 /* Extra small mobile adjustments */
